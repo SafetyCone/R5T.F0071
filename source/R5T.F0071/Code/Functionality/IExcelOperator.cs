@@ -127,7 +127,7 @@ namespace R5T.F0071
             this.In_ApplicationContext_Synchronous(
                 application =>
                 {
-                    var workbook = application.NewWorkbook();
+                    using var workbook = application.NewWorkbook();
 
                     workbookAction(
                         workbook);
@@ -148,9 +148,6 @@ namespace R5T.F0071
             this.In_WorkbookContext_New(
                 Internal);
         }
-
-
-
 
         public void InModifyContext(
 			string workbookFilePath,
@@ -188,7 +185,7 @@ namespace R5T.F0071
         {
 			using var application = new Application();
 
-			var workbook = application.OpenWorkbook(workbookFilePath);
+			using var workbook = application.OpenWorkbook(workbookFilePath);
 
 			var output = workbookQueryFunction(workbook);
 
